@@ -3,7 +3,7 @@ import { FiLink } from "react-icons/fi"
 
 
 
-export const CardPublication = ({ title, description, proyect, course, creationDate }) => {
+export const CardPublication = ({title, description, proyect, course, creationDate,HandleClick }) => {
     return (
         <Card bg="#FFFAE5" border="1px solid #FF6F61" borderRadius="lg" maxW="800px" p={6} m={4} shadow="md" _hover={{ shadow: "lg", transform: "scale(1.02)" }} transition="ease-in-out 0.3s">
         <CardBody>
@@ -19,7 +19,7 @@ export const CardPublication = ({ title, description, proyect, course, creationD
         </CardBody>
         <Divider borderColor="#FFB74D" my={4} />
         <CardFooter>
-            <Button bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }}>Comentarios</Button>
+            <Button onClick={HandleClick} bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }}>Comentarios</Button>
         </CardFooter>
         </Card>
     )
