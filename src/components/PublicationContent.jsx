@@ -17,7 +17,7 @@ export const PublicationContent = () => {
 
     const filteredPublications = filter === 'all'
         ? publications
-        : publications.filter(publication => publication.course.name === filter)
+        : publications.filter(publication => publication.course === filter)
 
     return (
         <>
