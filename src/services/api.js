@@ -27,3 +27,14 @@ export const getCommentsByPublicationIdRequest = async(id)=>{
     }
 }
     
+
+export const createCommentRequest = async(comment)=>{
+    try {
+        return await apiClient.post('/comment/addComment',comment)
+    } catch (err) {
+        return{
+            error:true,
+            err
+        }
+    }
+}
