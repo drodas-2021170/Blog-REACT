@@ -14,7 +14,7 @@ export const Publications = ({publications}) => {
                         title={publi.title} 
                         description={publi.description} 
                         proyect={publi.proyect} 
-                        course={publi.course.name} 
+                        course={publi.course} 
                         creationDate={publi.creationDate} 
                         HandleClick={() => navigate(`/comments/${publi._id}`)} 
                     />
