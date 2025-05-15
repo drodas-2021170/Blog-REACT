@@ -10,7 +10,6 @@ export const useComment = () => {
             content,
             publication
         }
-        setCommentCount(commentCount + 1)
         const response = await createCommentRequest(comment)
         if(response.error){
             return toast.error(
@@ -18,11 +17,13 @@ export const useComment = () => {
                 'Error al crear un comentario'
             )
         }
+        setCommentCount(commentCount + 1)
         console.log('Comentario creado',commentCount)
         return toast.success('Comentario creado con exito')
     }
     return {
         addComment,
-        commentCount
+        commentCount,
+        setCommentCount
     }
 }
