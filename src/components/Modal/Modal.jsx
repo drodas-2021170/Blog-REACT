@@ -1,22 +1,25 @@
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
 import { useContext, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useComment } from "../../shared/hooks/useComment"
+import { useCommentsByPublication } from "../../shared/hooks/useCommentsByPublication"
 
 
 
-export const InitialFocus = ({}) => {  
+export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {  
     const { isOpen, onOpen, onClose } = useDisclosure()  
     const initialRef = useRef(null)
     const finalRef = useRef(null)
-    
+
+    const {addComment} = useComment() 
     const {id} = useParams()
 
     const [author, setAuthor] = useState("")
     const [content, setContent] = useState("")
     const [publication, setPublication] = useState(id)
 
-    
+
+
 
     const [formValidation, setFormValidation] = useState({
         author:undefined,
@@ -25,9 +28,11 @@ export const InitialFocus = ({}) => {
     })
     
 
-    const {addComment} = useComment() 
 
     const handleSubmit = (e)=>{
+        myRef.current = myRef.current + 1
+        console.log('Estoy en modal',myRef.current )
+        setIsOpenModal(prev => !prev)
         e.preventDefault(),
         setAuthor('')
         setContent('')
@@ -49,7 +54,11 @@ export const InitialFocus = ({}) => {
 
     return (
         <>
-        <Button onClick={onOpen}>Crear comentario</Button>
+        <Box position="fixed" top="18px" right="150px" zIndex={1000}>
+                <Button onClick={onOpen}  bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" } } ml={3}>
+                    Crear comentario
+                </Button>
+            </Box>
         <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
@@ -58,7 +67,7 @@ export const InitialFocus = ({}) => {
         >
             <ModalOverlay />
             <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
+            <ModalHeader>Create comentario</ModalHeader>
             <ModalBody pb={6}>
                 <form onSubmit={handleSubmit}>
                     <FormControl>
