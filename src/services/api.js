@@ -38,3 +38,14 @@ export const createCommentRequest = async(comment)=>{
         }
     }
 }
+
+export const getPublicationById = async(id)=>{
+    try{
+        return await apiClient.get(`/publication/getPublication/${id}`)
+    }catch(err){
+        return{
+            error:true,
+            err
+        }
+    }
+}
