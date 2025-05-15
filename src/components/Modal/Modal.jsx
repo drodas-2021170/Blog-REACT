@@ -41,17 +41,19 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
 
     const handleChangeAuthor = (e)=>{
         const value = e.target.value
+        setFormValidation({...formValidation, author: value.length===0?'Please field this field':value.length>25?'This field can not be overcome 25 characters':''})
         console.log(value)
         setAuthor(value)
     }
 
     const handleChangeContent = (e)=>{
         const value = e.target.value
+        setFormValidation({...formValidation, content: value.length===0?'Please field this field':value.length>200?'This field can not be overcome 200 chracters':''})
         console.log(value)
         setContent(value)
     }
 
-
+    const isDisabled = formValidation.author === ''&& formValidation.content === ''
     return (
         <>
         <Box position="fixed" top="18px" right="150px" zIndex={1000}>
@@ -73,14 +75,16 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
                     <FormControl>
                         <FormLabel>Author</FormLabel>
                         <Input ref={initialRef} placeholder='Author' value={author} onChange={handleChangeAuthor} />
+                        <span>{formValidation.author}</span>
                     </FormControl>
 
                     <FormControl mt={4}>
                         <FormLabel>Content</FormLabel>
                         <Textarea placeholder='Content' value={content} onChange={handleChangeContent} />
+                        <span>{formValidation.content}</span>
                     </FormControl>
             <ModalFooter>
-                <Button type='submit'onClick={onClose} colorScheme='blue' mr={3}>
+                <Button type='submit'onClick={onClose} disabled={!isDisabled}colorScheme='blue' mr={3}>
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
