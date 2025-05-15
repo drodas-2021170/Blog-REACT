@@ -5,6 +5,7 @@ import { Publications } from './publications/Publications'
 import { FilterBar } from './FilterBar'
 import { useEffect, useState } from 'react'
 import { Flex, Heading } from '@chakra-ui/react'
+import { Navbar } from './comments/Navbar/Navbar'
 
 export const PublicationContent = () => {
     const { publications, isFetching } = useContextPubication()
@@ -21,12 +22,15 @@ export const PublicationContent = () => {
 
     return (
         <>
-        <Flex  alignItems='center' justifyContent='center' flexDirection='row' gap={4} flexWrap='wrap'>
-            <FilterBar filter={filter} setFilter={setFilter}  />
-            {filter ==='all'?<Heading>Publicaciones de todos los cursos</Heading>:<Heading>Publicaciones de {filter}</Heading>}
-            
-            <Publications publications={filteredPublications} />
+        <Navbar>
+            <Flex  width="100%" alignItems="center" justifyContent="center" flexDirection="row" gap={4} flexWrap="wrap">
+                <FilterBar filter={filter} setFilter={setFilter}  />
+                {filter ==='all'?<Heading>Publicaciones de todos los cursos</Heading>:<Heading>Publicaciones de {filter}</Heading>}
             </Flex>
+        </Navbar>
+        <Flex  alignItems='center' justifyContent='center' flexDirection='row' gap={4} flexWrap='wrap'>
+            <Publications publications={filteredPublications} />
+        </Flex>
         </>
     )
 }
