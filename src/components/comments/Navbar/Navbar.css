@@ -1,6 +1,6 @@
-/* Estilos del contenedor del Navbar */
+
 nav {
-  background-color: #fef4e4;  /* Fondo suave beige */
+  background-color: #fef4e4;  
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;

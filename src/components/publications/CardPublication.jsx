@@ -3,15 +3,7 @@ import { FiLink } from "react-icons/fi";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
-export const CardPublication = ({
-    boxi,
-    title,
-    description,
-    proyect,
-    course,
-    creationDate,
-    HandleClick
-}) => {
+export const CardPublication = ({boxi,title,description,proyect,course,creationDate,HandleClick}) => {
     const [showDetails, setShowDetails] = useState(false);
 
     const handleToggleDetails = () => {
@@ -20,20 +12,9 @@ export const CardPublication = ({
 
     return (
         <Box key={boxi} > 
-        <Card
-            bg="#FFFAE5"
-            border="1px solid #FF6F61"
-            borderRadius="lg"
-            maxW="800px"
-            p={6}
-            m={4}
-            shadow="md"
-            _hover={{
-                shadow: "lg",
-                transform: "scale(1.02)",
-            }}
-            transition="ease-in-out 0.3s"
-        >
+        <Card bg="#FFFAE5" border="1px solid #FF6F61" borderRadius="lg" maxW="800px" p={6} m={4} shadow="md" 
+        _hover={{ transform: "scale(1.02)", }} 
+        transition="ease-in-out 0.3s" >
             <CardBody>
                 <Stack spacing={4}>
                     <Heading size="lg" color="#FF6F61">
@@ -47,18 +28,13 @@ export const CardPublication = ({
             </CardBody>
             <Divider borderColor="#FFB74D" my={4} />
             <CardFooter>
-                <Button
-                
-                    onClick={handleToggleDetails} bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }}
-                >
+                <Button onClick={handleToggleDetails} bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }}>
                     {showDetails ? <ViewOffIcon/>: (<ViewIcon/>)}
                 </Button>
-
                 <Button onClick={HandleClick} bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" } } ml={3}>
                     Comentarios
                 </Button>
             </CardFooter>
-
             {showDetails && (
                 <Box p={4} mt={4} borderTop="1px solid #FF6F61" bg="#FFF8E1">
                     <Heading size="md" color="#FF6F61">Detalles del Proyecto</Heading>

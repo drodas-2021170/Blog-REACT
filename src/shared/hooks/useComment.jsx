@@ -18,7 +18,6 @@ export const useComment = () => {
             )
         }
         setCommentCount(commentCount + 1)
-        console.log('Comentario creado',commentCount)
         return toast.success('Comentario creado con exito')
     }
     return {

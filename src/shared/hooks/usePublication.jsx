@@ -13,7 +13,6 @@ export const usePublication = () => {
                 'Error al obtener las publicaciones, por favor intente más tarde'
             )
         }
-        console.log(response)
         setPublications(response.data.publications)
     }
     return {
