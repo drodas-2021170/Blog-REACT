@@ -17,6 +17,7 @@ export const useCommentsByPublication = () => {
     }
     return {
         comments,
+        setComments,
         isFetching: !comments,
         getCommentsByPublication,
     }
