@@ -1,0 +1,12 @@
+/* Estilos del contenedor del Navbar */
+nav {
+  background-color: #fef4e4;  /* Fondo suave beige */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
