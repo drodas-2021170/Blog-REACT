@@ -12,7 +12,9 @@ export const PublicationContent = () => {
     const [filter, setFilter] = useState('all')
     if (isFetching) {
         return (
-            <FadeLoader color='green'/>
+            <Flex justifyContent="center" alignItems="center" height="100vh">
+                <FadeLoader color="#FF6F61" />
+            </Flex>
         )
     }
 

@@ -87,7 +87,7 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
                 <Button type='submit'onClick={onClose} disabled={!isDisabled}colorScheme='blue' mr={3}>
                 Save
                 </Button>
-                <Button onClick={onClose}>Cancel</Button>
+                <Button onClick={()=>{onClose(); setAuthor(''), setContent('')}}>Cancel</Button>
             </ModalFooter>
             </form>
             </ModalBody>
