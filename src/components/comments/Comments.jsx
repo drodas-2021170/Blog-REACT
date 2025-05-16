@@ -28,6 +28,7 @@ export const Comments = () => {
     }, []);  
 
 
+    console.log(myRef.current)
     useEffect(() => {
         if (myRef.current >= 0) {  
             getCommentsByPublication(id);
@@ -37,7 +38,11 @@ export const Comments = () => {
     console.log(myRef.current)
 
     if (isFetching) {
-        return <FadeLoader color="green" />;
+        return (
+            <Flex justifyContent="center" alignItems="center" height="100vh">
+                <FadeLoader color="#FF6F61" />
+            </Flex>
+        )
     }
 
 
@@ -67,7 +72,7 @@ export const Comments = () => {
 
                 {isModalOpen && <InitialFocus myRef={myRef} setIsOpenModal={setIsModalOpen} />}
 
-                <Box display="grid"  gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"  gap={4}  justifyItems="center" width="100%" >
+                <Box display="grid"  gridTemplateColumns="repeat(auto-fill, minmax(350px, 1fr))"  gap={4}  justifyItems="center" width="100%" >
                     {comments.length === 0 ? (
                         <Flex  flexDirection="column"justifyContent="center"alignItems="center">
 
