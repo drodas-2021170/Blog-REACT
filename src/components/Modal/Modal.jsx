@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
-import { useContext, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useComment } from "../../shared/hooks/useComment"
 import { useCommentsByPublication } from "../../shared/hooks/useCommentsByPublication"
@@ -18,7 +18,7 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
     const [content, setContent] = useState("")
     const [publication, setPublication] = useState(id)
 
-
+     const { comments, isFetching, getCommentsByPublication,setComments } = useCommentsByPublication();
 
 
     const [formValidation, setFormValidation] = useState({

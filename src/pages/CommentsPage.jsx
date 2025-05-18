@@ -8,7 +8,6 @@ export const CommentsPage = () => {
     return (
         <>  
     <PublicationProvider>
-
                 <Comments/>
     </PublicationProvider>
 

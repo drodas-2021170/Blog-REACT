@@ -27,13 +27,13 @@ export const Comments = () => {
         getCommentsByPublication(id); 
     }, []);  
 
-
+    
     console.log(myRef.current)
     useEffect(() => {
-        if (myRef.current >= 0) {  
-            getCommentsByPublication(id);
-        }
+        getCommentsByPublication(id);
+
     }, [myRef.current, id]);
+    
 
     console.log(myRef.current)
 
@@ -75,8 +75,6 @@ export const Comments = () => {
                 <Box display="grid"  gridTemplateColumns="repeat(auto-fill, minmax(350px, 1fr))"  gap={4}  justifyItems="center" width="100%" >
                     {comments.length === 0 ? (
                         <Flex  flexDirection="column"justifyContent="center"alignItems="center">
-
-
                         <Heading textAlign="center" ml={'1000'}>
                             No hay comentarios para esta publicación
                         </Heading>
