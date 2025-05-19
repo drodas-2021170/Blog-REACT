@@ -31,7 +31,8 @@ export const PublicationContent = () => {
             </Flex>
         </Navbar>
         <Flex  alignItems='center' justifyContent='center' flexDirection='row' gap={4} flexWrap='wrap'>
-            <Publications publications={filteredPublications} />
+            
+            {publications.length === 0?(<Heading>No hay publicaciones</Heading>):(<Publications publications={filteredPublications} />)}
         </Flex>
         </>
     )

@@ -7,45 +7,34 @@ import { InitialFocus } from "../Modal/Modal";
 import { useComment } from "../../shared/hooks/useComment";
 import { CardComment } from "./CardComment";
 import { usePublicationById } from "../../shared/hooks/usePublicationById";
-import { Publications } from "../publications/Publications";
-import { Navbar } from "./Navbar/Navbar";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
 
 export const Comments = () => {
-    const { comments, isFetching, getCommentsByPublication,setComments } = useCommentsByPublication();
+    const { comments, isFetching, getCommentsByPublication, setComments } = useCommentsByPublication();
     const { addComment, commentCount, setCommentCount } = useComment();
     const { publication, getPublicationBy } = usePublicationById();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { id } = useParams();
-
-    const myRef = useRef(1)
-
-    let navigate = useNavigate()
+    const myRef = useRef(1);
+    let navigate = useNavigate();
     
     useEffect(() => {
         getPublicationBy(id);  
         getCommentsByPublication(id); 
     }, []);  
 
-    
-    console.log(myRef.current)
     useEffect(() => {
         getCommentsByPublication(id);
-
     }, [myRef.current, id]);
-    
 
-    console.log(myRef.current)
 
     if (isFetching) {
         return (
             <Flex justifyContent="center" alignItems="center" height="100vh">
                 <FadeLoader color="#FF6F61" />
             </Flex>
-        )
+        );
     }
-
-
 
     const handleOpenModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -54,8 +43,8 @@ export const Comments = () => {
 
     return (
         <Box>
-            <Box display="flex" justifyContent="space-between" alignItems="center" bg="#FAF3E0"  p={4} >
-                <Button onClick={() => navigate('/')}  bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }} ml={3}>
+            <Box display="flex" justifyContent="space-between" alignItems="center" bg="#FAF3E0" p={4}>
+                <Button onClick={() => navigate('/')} bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }} ml={3}>
                     <ArrowLeftIcon />
                 </Button>
                 <Button bg="#FF6F61" color="white" _hover={{ bg: "#FF3D00" }} onClick={handleOpenModal}>
@@ -63,7 +52,7 @@ export const Comments = () => {
                 </Button>
             </Box>
 
-            <Box display="flex" flexDirection="column" alignItems="center" mt={6}>
+            <Box display="flex" flexDirection="column" alignItems="center" mt={6} width="100vw">
                 {publication && (
                     <Heading mb={6} textAlign="center">
                         Comentarios del proyecto: {publication.title}
@@ -72,20 +61,19 @@ export const Comments = () => {
 
                 {isModalOpen && <InitialFocus myRef={myRef} setIsOpenModal={setIsModalOpen} />}
 
-                <Box display="grid"  gridTemplateColumns="repeat(auto-fill, minmax(350px, 1fr))"  gap={4}  justifyItems="center" width="100%" >
+                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" width="100%" mt={6} >
                     {comments.length === 0 ? (
-                        <Flex  flexDirection="column"justifyContent="center"alignItems="center">
-                        <Heading textAlign="center" ml={'1000'}>
+                        <Heading size="md" textAlign="center">
                             No hay comentarios para esta publicación
                         </Heading>
-                        </Flex>
                     ) : (
-                        comments.map((comme) => (
-                            <CardComment key={comme._id} author={comme.author} content={comme.content} creationDate={comme.creationDate}/>
-                        ))
+                        <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(350px, 1fr))" gap={4} justifyItems="center" width="100%" >
+                            {comments.map((comme) => ( <CardComment key={comme._id} author={comme.author} content={comme.content} creationDate={comme.creationDate} />
+                            ))}
+                        </Box>
                     )}
                 </Box>
             </Box>
         </Box>
-    )
+    );
 };

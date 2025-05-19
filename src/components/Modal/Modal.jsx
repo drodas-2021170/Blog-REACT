@@ -6,7 +6,7 @@ import { useCommentsByPublication } from "../../shared/hooks/useCommentsByPublic
 
 
 
-export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {  
+export const InitialFocus = ({setIsOpenModal, myRef}) => {  
     const { isOpen, onOpen, onClose } = useDisclosure()  
     const initialRef = useRef(null)
     const finalRef = useRef(null)
@@ -17,8 +17,6 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
     const [author, setAuthor] = useState("")
     const [content, setContent] = useState("")
     const [publication, setPublication] = useState(id)
-
-     const { comments, isFetching, getCommentsByPublication,setComments } = useCommentsByPublication();
 
 
     const [formValidation, setFormValidation] = useState({
@@ -31,7 +29,6 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
 
     const handleSubmit = (e)=>{
         myRef.current = myRef.current + 1
-        console.log('Estoy en modal',myRef.current )
         setIsOpenModal(prev => !prev)
         e.preventDefault(),
         setAuthor('')
@@ -42,14 +39,12 @@ export const InitialFocus = ({isOpenModal,setIsOpenModal, myRef}) => {
     const handleChangeAuthor = (e)=>{
         const value = e.target.value
         setFormValidation({...formValidation, author: value.length===0?'Please field this field':value.length>25?'This field can not be overcome 25 characters':''})
-        console.log(value)
         setAuthor(value)
     }
 
     const handleChangeContent = (e)=>{
         const value = e.target.value
         setFormValidation({...formValidation, content: value.length===0?'Please field this field':value.length>200?'This field can not be overcome 200 chracters':''})
-        console.log(value)
         setContent(value)
     }
 
